@@ -12,17 +12,30 @@ $(() => {
           console.log(data);
         const $pokeBall = $('<div>').addClass('pokeBall');
         $pokeBall.appendTo('.container');
+
         const $pokeName = $('<h3>').text(data.name);
         $pokeName.appendTo($pokeBall)
+
         const $index = $('<p>').text(data.id);
-        $index.appendTo($pokeName);
-        const $types = $('<p>').text(data.types)
-        $types.appendTo($pokeName)
+        $index.appendTo($pokeBall);
+
+        const $image = $('<img>').attr('src' , `https://pokeres.bastionbot.org/images/pokemon/${userInput.toLowerCase()}.png`)
+        $image.appendTo($pokeBall)
+
+
+
+        // const $types = $('<ul>').addClass('types')
+        //   $types.appendTo($pokeBall).text(data.types)
+
         },
         (error) => {
           console.log(error);
         }
     );
+
+
+
+
   });
 });
 
