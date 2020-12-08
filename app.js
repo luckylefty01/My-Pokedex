@@ -17,11 +17,11 @@ $(() => {
             }).then((pokemon) => {
               // console.log(pokemon);
 
-              let $pokeBall = $(`<div id="pokeBall">
+              let $pokeBall = $(`<div class="pokeBall">
                 <h3 id = "pokeName">Name:${profile.name}</h3>
-                <img src=https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png alt=${pokemon.name}>
+                <img id = "pokePics" src=https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png alt=${pokemon.name}>
                 <p id = "idex">Index:${pokemon.id}</p>`
-              ).appendTo(".container");
+              ).appendTo(".pokedex-container");
             });
           }
         },
@@ -31,9 +31,37 @@ $(() => {
         }
     );
 
+      //==================Carousel==================
+
+    let $pokeCarousel=[];
+    // console.log(pokeCarousel);
+    let currentImgIndex =0;
+    let $numOfImages = $(".pokeBall").length-1;
+
+    $(".next").on("click",() => {
+      $(".pokeBall").eq(currentImgIndex).css("display", "none");
+
+      if(currentImgIndex<numOfImages){
+        currentImgIndex++;
+      } else {
+        currentImgIndex = 0;
+      }
+      $(".pokeBall").eq(currentImgIndex).css("display", "block");
+    });
 
 
+      $(".previous").on("click", () => {
 
+        $(".pokeBall").eq(currentImgIndex).css("display", "none")
+
+        if(currentImgIndex>0) {
+          currentImgIndex --
+        } else {
+          currentImgIndex = numOfImages
+        }
+
+        $(".pokeBall").eq(currentImgIndex).css("display", "block");
+      });
   });
 });
 
