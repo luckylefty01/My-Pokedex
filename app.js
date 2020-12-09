@@ -2,21 +2,15 @@ $(() => {
 
   const $openBtn = $("#openModal");
 
-    //grabbing modal element
     const $modal = $("#modal");
 
-    //creating close btn for modal
     const $closeBtn = $("#close")
 
-    //function to display modal
     const openModal = () => {
       $modal.css("display", "block");
     }
+      $openBtn.on("click", openModal);
 
-    //event handler to open
-    $openBtn.on("click", openModal);
-
-    //event handler to close modal
     const closeModal = () => {
       $modal.css("display", "none");
     }
@@ -32,7 +26,8 @@ $("form").on("submit" , (event) => {
 
     }).then(
         (data) => {
-          console.log(data);
+          // console.log(data);
+          $('#modal-textbox').empty();
 
           const $pokeBall = $('<div>').addClass('pokeBall');
           $pokeBall.appendTo('#modal-textbox');
