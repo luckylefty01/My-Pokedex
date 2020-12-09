@@ -1,17 +1,41 @@
 $(() => {
-  $("form").on("submit" , (event) => {
+
+  const $openBtn = $("#openModal");
+
+    //grabbing modal element
+    const $modal = $("#modal");
+
+    //creating close btn for modal
+    const $closeBtn = $("#close")
+
+    //function to display modal
+    const openModal = () => {
+      $modal.css("display", "block");
+    }
+
+    //event handler to open
+    $openBtn.on("click", openModal);
+
+    //event handler to close modal
+    const closeModal = () => {
+      $modal.css("display", "none");
+    }
+
+$("form").on("submit" , (event) => {
     event.preventDefault();
+    openModal;
 
     const userInput = $('input[type = "text"]').val();
 
     $.ajax({
       url: `https://pokeapi.co/api/v2/pokemon/${userInput.toLowerCase()}`,
+
     }).then(
         (data) => {
+          console.log(data);
 
-            console.log(data);
           const $pokeBall = $('<div>').addClass('pokeBall');
-          $pokeBall.appendTo('.container');
+          $pokeBall.appendTo('#modal-textbox');
 
           const $pokeName = $('<h3>').text(data.name);
           $pokeName.appendTo($pokeBall)
@@ -22,11 +46,14 @@ $(() => {
           const $image = $('<img>').attr('src' , `https://pokeres.bastionbot.org/images/pokemon/${userInput.toLowerCase()}.png`)
           $image.appendTo($pokeBall)
 
+          $('#modal-textbox').append($closeBtn);
+
+          $closeBtn.on("click", closeModal);
+
         });
 
     })
-  });
-
+});
 // ==============================
 // Graveyard code
 // ==============================
