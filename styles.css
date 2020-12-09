@@ -1,57 +1,52 @@
+@@font-face {
+  font-family: 'Ranchers', cursive;
+
+}
+body{
+  background-image: url('https://i.imgur.com/kYjqrJ9.png');
+  background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
 .container{
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 1.7;
+  padding: .35;
 }
 
 #banner {
   height: 150px;
   width:350px ;
+  margin: -5px auto 5px auto;
+  background-repeat: repeat;
 }
-
-
-img {
-  height: 100px;
-  width: 100px;
-}
-
-
-/* ======= CAROUSEL SECTION ======== */
-.pokedex-container {
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
-  background-color: lightblue;
-}
- .pokeBall {
-  width: 80%;
-  background: lightblue;
-  padding: 10px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  box-shadow: 2px 2px #f2cd99;
-}
- .pokeBall img {
-  width: 100%;
-  border-radius: 10px;
-  display: flex;
-}
-.pokedex-button {
-  align-self: center;
-  background: #f2cd99;
-  color: #888;
-  padding: 10px;
-  border-radius: 50%;
-  text-align: center;
-  box-shadow: 1px 1px #fa8d8e;
-}
-.pokedex-button:hover {
-  cursor: pointer;
-  background: #fa8d8e;
-  box-shadow: 1px 1px #f2cd99;
+h1 {
+  font-family: 'Ranchers', cursive;
   color: white;
 }
 
-.pokeBall img first-of-type {
-  display: block;
+.pokeBall {
+   display: flex;
+   flex-flow: wrap;
+   flex-direction: row;
+   justify-content: space-around;
+   align-content: space-between;
+   background: grey;
+
+ }
+
+img{
+height: 400px;
+width: 220px;
+}
+
+@media(max width:500px) {
+  .container {
+    display: block;
+    background-size: contain;
+  }
 }

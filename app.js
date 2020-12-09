@@ -1,70 +1,31 @@
 $(() => {
-  $("#button").on("click", (event) => {
-      event.preventDefault();
+  $("form").on("submit" , (event) => {
+    event.preventDefault();
 
-      // const userInput = $('input[type = "text"]').val();
+    const userInput = $('input[type = "text"]').val();
 
     $.ajax({
-      url: `https://pokeapi.co/api/v2/pokemon?limit=251`,
+      url: `https://pokeapi.co/api/v2/pokemon/${userInput.toLowerCase()}`,
     }).then(
         (data) => {
-          // console.log(data);
-          for(let profile of data.results){
-            let pokeURL = profile.url;
 
-            $.ajax({
-              url:pokeURL,
-            }).then((pokemon) => {
-              // console.log(pokemon);
+            console.log(data);
+          const $pokeBall = $('<div>').addClass('pokeBall');
+          $pokeBall.appendTo('.container');
 
-              let $pokeBall = $(`<div class="pokeBall">
-                <h3 id = "pokeName">Name:${profile.name}</h3>
-                <img id = "pokePics" src=https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png alt=${pokemon.name}>
-                <p id = "idex">Index:${pokemon.id}</p>`
-              ).appendTo(".pokedex-container");
-            });
-          }
-        },
+          const $pokeName = $('<h3>').text(data.name);
+          $pokeName.appendTo($pokeBall)
 
-        (error) => {
-          console.log(error);
-        }
-    );
+          const $index = $('<p>').text(data.id);
+          $index.appendTo($pokeBall);
 
-      //==================Carousel==================
+          const $image = $('<img>').attr('src' , `https://pokeres.bastionbot.org/images/pokemon/${userInput.toLowerCase()}.png`)
+          $image.appendTo($pokeBall)
 
-    let $pokeCarousel=[];
-    // console.log(pokeCarousel);
-    let currentImgIndex =0;
-    let $numOfImages = $(".pokeBall").length-1;
+        });
 
-    $(".next").on("click",() => {
-      $(".pokeBall").eq(currentImgIndex).css("display", "none");
-
-      if(currentImgIndex<numOfImages){
-        currentImgIndex++;
-      } else {
-        currentImgIndex = 0;
-      }
-      $(".pokeBall").eq(currentImgIndex).css("display", "block");
-    });
-
-
-      $(".previous").on("click", () => {
-
-        $(".pokeBall").eq(currentImgIndex).css("display", "none")
-
-        if(currentImgIndex>0) {
-          currentImgIndex --
-        } else {
-          currentImgIndex = numOfImages
-        }
-
-        $(".pokeBall").eq(currentImgIndex).css("display", "block");
-      });
+    })
   });
-});
-
 
 // ==============================
 // Graveyard code
@@ -76,15 +37,23 @@ $(() => {
 // const $types = $('<ul>').addClass('types')
 //   $types.appendTo($pokeBall).text(types[0].type)
 
+//   for (let profile of data.results) {
+//     // console.log(data);
+// //store each pokemon URL in a var so we can make a network req to each
+//   let pokeURL = profile.url;
+// //make a call to each URL
+//   $.ajax({
+//   //set the url equal to the variable (iterating pkmn urls)
+//     url: pokeURL,
+//   //in the promise we'll declare the data we fetch as pokemon
+//   }).then(
+//     (pokemon) => {
 //   console.log(data);
-// const $pokeBall = $('<div>').addClass('pokeBall');
-// $pokeBall.appendTo('.container');
+//   //create a "card" for each pokemon that holds an image
+//   //the image source will be pokeres url with the id of the pkmn obj bc that is how the url is structured
 //
-// const $pokeName = $('<h3>').text(data.name);
-// $pokeName.appendTo($pokeBall)
-//
-// const $index = $('<p>').text(data.id);
-// $index.appendTo($pokeBall);
-//
-// const $image = $('<img>').attr('src' , `https://pokeres.bastionbot.org/images/pokemon/${userInput.toLowerCase()}.png`)
-// $image.appendTo($pokeBall)
+//     $(`<div class ="pokeBall">
+//       <h3 id="pokeName">${pokemon.name}</h3>
+//     <img id="pokePics" src=https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png alt=${pokemon.name}>
+//     <p id = "index">Index #:${pokemon.id}</p>
+//     </div>`).addClass(pokemon.name).appendTo(".container"); //append it to our container var
