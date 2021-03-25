@@ -30,16 +30,26 @@ h1 {
 }
 
 .pokeBall {
-   display: flex;
+   /* display: flex; */
    flex-direction: row;
    justify-content: centered;
-   background: grey;
+   /* background: grey; */
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+   margin-bottom: -5px;
+  font-size: 25px;
+ }
 
+ h3, p {
+  margin:auto;
+  text-align:center;
  }
 
 img{
-height: 600px;
-width: 350px;
+  margin-top: 5px;
+    margin-bottom: 5px;
+    width: 270px;
+    height: 250px;
 }
 
 @media(max width:500px) {

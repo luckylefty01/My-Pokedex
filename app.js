@@ -1,9 +1,7 @@
 $(() => {
 
   const $openBtn = $("#openModal");
-
     const $modal = $("#modal");
-
     const $closeBtn = $("#close")
 
     const openModal = () => {
@@ -15,18 +13,18 @@ $(() => {
       $modal.css("display", "none");
     }
 
-$("form").on("submit" , (event) => {
+  $("form").on("submit" , (event) => {
     event.preventDefault();
     openModal;
 
-    const userInput = $('input[type = "text"]').val();
+    const userInput = $("input[type = 'text']").val();
 
     $.ajax({
-      url: `https://pokeapi.co/api/v2/pokemon/${userInput.toLowerCase()}`,
+      url: `https://pokeapi.co/api/v2/pokemon/${userInput}`,
 
     }).then(
         (data) => {
-          // console.log(data);
+          console.log(data);
           $('#modal-textbox').empty();
 
           const $pokeBall = $('<div>').addClass('pokeBall');
@@ -38,8 +36,8 @@ $("form").on("submit" , (event) => {
           const $index = $('<p>').text(data.id);
           $index.appendTo($pokeBall);
 
-          const $image = $('<img>').attr('src' , `https://pokeres.bastionbot.org/images/pokemon/${userInput.toLowerCase()}.png`)
-          $image.appendTo($pokeBall)
+          const $image = $('<img>').attr('src' , data.sprites.front_default)
+          $image.appendTo($pokeBall);
 
           $('#modal-textbox').append($closeBtn);
 
